@@ -8,6 +8,7 @@ import styled from 'styled-components';
 function Home() {
   const [location, setLocation] = useState<any>('0,0');
   const [weatherReport, setWeatherReport] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
   const initialLocation: string[] = [
     'Lagos', 'Abuja', 'London', 'Los Angeles', 'Paris'
   ]
@@ -17,9 +18,11 @@ function Home() {
     console.log(weatherReport)
   }, [])
   const handleEnter = async () => {
+    setIsLoading(true)
     const response = await getWeatherForecast({location});
     console.log({debug: true, response})
     setWeatherReport(response)
+    setIsLoading(false)
   }
   return (
     <React.Fragment>
@@ -31,6 +34,7 @@ function Home() {
               location={location} 
               handleEnter={handleEnter} 
               initialLocation={initialLocation}
+              isLoading={isLoading}
             />
             <div style={{marginTop: 10}}>
               {weatherReport !== {} && <WeatherResult weatherReport={weatherReport}/>}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'; 
+import { color } from '../../config';
 
 export default function header() {
   return (
@@ -20,15 +21,13 @@ const Header = styled.div`
 
 const AHref = styled.a`
     float: left;
-    color: black;
+    color: ${color.black};
     text-align: center;
     padding: 12px;
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
-
-
-  font-size: 25px;
-  font-weight: bold;    
+    font-size: 25px;
+    font-weight: bold;    
 `;

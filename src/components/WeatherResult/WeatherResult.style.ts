@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device, fonts } from '../../config';
+import { color, device, fonts } from '../../config';
 
 export const Container = styled.div`
     margin: auto;
@@ -52,34 +52,34 @@ export const TemperatureDiv = styled.div`
     margin-bottom: 20px;
     span {
         font-size: ${fonts.SUBHEADER};
-        color: black;
+        color: ${color.black};
     }
     .degree {
         font-size: ${fonts.BODY};
-        color: grey;
+        color: ${color.grey};
     }
     @media ${device.mobileM} {
         span {
             font-size: ${fonts.SUBHEADER};
-            color: black;
+            color: ${color.black};
         }
     }
     @media ${device.tablet} {
         span {
             font-size: ${fonts.SUBHEADER};
-            color: black;
+            color: ${color.black};
         }
     }
     @media ${device.laptop} {
         span {
             font-size: ${fonts.SUBHEADER};
-            color: black;
+            color: ${color.black};
         }
     }
     @media ${device.desktop} {
         span {
             font-size: ${fonts.HEADER};
-            color: black;
+            color: ${color.black};
         }
     }
 `;

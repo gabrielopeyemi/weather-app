@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
+import { color } from '../../config';
 import { Container, MainDiv, Sidebar, TemperatureDiv, TemperatureText, EachWeatherDayDiv } from './WeatherResult.style'
-import { fonts } from '../../config';
-
-export default function WeatherResult({weatherReport}: any) {
+interface Prop {
+    weatherReport?: any;
+}
+export default function WeatherResult({weatherReport}: Prop) {
   useEffect(() => console.log(weatherReport), [weatherReport])
   return (
     <Container>
@@ -24,15 +26,15 @@ export default function WeatherResult({weatherReport}: any) {
                         <TemperatureText>{eachDay.temp}°C</TemperatureText>
                     </div>
                     <div style={{margin: '10px 0'}}>
-                        <span style={{color: 'grey'}}>weather</span>
+                        <span style={{color: color.grey}}>weather</span>
                         <h3 style={{ margin: 0}}>{eachDay.icon}</h3>
                     </div>
                     <div style={{margin: '10px 0'}}>
-                        <span style={{color: 'grey'}}>date</span>
+                        <span style={{color: color.grey}}>date</span>
                         <h3 style={{ margin: 0}}>{eachDay.datetime}</h3>
                     </div>
                     <div style={{margin: '10px 0'}}>
-                        <span style={{color: 'grey'}}>cloud</span>
+                        <span style={{color: color.grey}}>cloud</span>
                         <h3 style={{ margin: 0}}>{eachDay.cloudcover}</h3>
                     </div>
                 </EachWeatherDayDiv>

@@ -1,15 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import styled  from 'styled-components';
-import { fonts } from '../../config';
-import { getLocation } from '../../utils/getLocation';
-
-export default function SearchBar(props: any) {
-  const {location} = props;
+import { color, fonts } from '../../config';
+interface Prop {
+    location: string;
+    isLoading: boolean;
+    setLocation: any;
+    getWeatherForecast: any;
+    handleEnter: any;
+    initialLocation: string[];
+}
+export default function SearchBar(props: Prop) {
+  const {location, isLoading, setLocation, getWeatherForecast, handleEnter, initialLocation} = props;
+  
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
-    props.setLocation(value)
-    props.getWeatherForecast({location: value})
+    setLocation(value)
+    getWeatherForecast({location: value})
   };
   return (
     <Main>
@@ -19,24 +26,24 @@ export default function SearchBar(props: any) {
                     <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                         <Input 
                             type="search" 
-                            placeholder="Search" 
-                            value={props.location} 
-                            onChange={(e: any) => props.setLocation(e.target.value)} 
+                            placeholder="location, or lat/lng" 
+                            value={location} 
+                            onChange={(e: any) => setLocation(e.target.value)} 
                             onKeyPress={(e: any) => {
                                 if (e.key === "Enter") {
-                                    props.handleEnter()
+                                    handleEnter()
                                 }
                             }}
                         />
                         <SelectDiv name={location} id="cars" onChange={selectChange} className='col-4'>
                             <option value={location}>Present Location</option>
-                            {props.initialLocation.map((eachLocation: string) => (
+                            {initialLocation.map((eachLocation: string) => (
                                 <option value={eachLocation} key={eachLocation}>{eachLocation}</option>
                             ))}
                         </SelectDiv>
                     </div>
                 </InputContainer>
-                <Button onClick={() => props.handleEnter()}>Search</Button>
+                <Button onClick={() => handleEnter()}>{isLoading ? 'loading...' : 'Search'}</Button>
         </Container>
     </Main>
   )
@@ -76,32 +83,16 @@ const InputContainer = styled.div`
     flex-direction: column;
     
 `;
-
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    padding: 10px;
-    margin: 10px;
-    grid-gap: 50px;
-`;
-
-const GridItem = styled.div`
-    padding: 10px;
-    font-size: ${fonts.BODY};
-    text-align: center;
-    width: 33%;
-    margin: auto;
-    background-color: #f9f9f9
-    border: 2px solid red !important;
-    border: 1px solid red !important;
-    align-items: center;
-    align-content: center;
-`;
 const Button = styled.button`
     padding: 10px 80px;
     width: 100%;
     margin: 20px 0;
-    padding: 20px;
+    padding: 15px;
+    font-size: ${fonts.SUBHEADER};
+    font-weight: bold;
+    background-color: ${color.primary};
+    border: 0px;
+    color: #fff;
 `;
     
 const SelectDiv = styled.select`

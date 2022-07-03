@@ -98,5 +98,4 @@ const Button = styled.button`
 const SelectDiv = styled.select`
     padding: 10px;
     border: 0;
-    // width: 100%;
 `;

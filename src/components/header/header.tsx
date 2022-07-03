@@ -15,10 +15,6 @@ const Header = styled.div`
     padding: 20px 10px;
 `;
 
-// const HeaderRight = styled.div`
-
-// `;
-
 const AHref = styled.a`
     float: left;
     color: ${color.black};

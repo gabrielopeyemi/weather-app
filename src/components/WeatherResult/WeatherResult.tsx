@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { color } from '../../config';
 import { Container, MainDiv, Sidebar, TemperatureDiv, TemperatureText, EachWeatherDayDiv } from './WeatherResult.style'
 interface Prop {
     weatherReport?: any;
 }
 export default function WeatherResult({weatherReport}: Prop) {
-  useEffect(() => console.log(weatherReport), [weatherReport])
   return (
     <Container>
         <Sidebar>

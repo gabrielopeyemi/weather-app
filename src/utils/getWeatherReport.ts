@@ -7,6 +7,10 @@ interface Props {
 }
 export const getWeatherForecast = async ({location, days}: Props): Promise<any> => {
     const URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${days ? getDays(days) : getDays()}?unitGroup=metric&include=events%2Cdays%2Ccurrent%2Calerts&key=${weatherAPI}&contentType=json`;
-    const response = await axios(`${URL}`);
-    return response.data;
+    try{
+        const response = await axios(`${URL}`);
+        return response.data;
+    }catch(error: any){
+        throw error.response.data;
+    }
 };

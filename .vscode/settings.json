@@ -5,6 +5,7 @@
         "EXTRASMALLDEVICES",
         "LARGEDEVICES",
         "MEDIUMDEVICES",
-        "SMALLDEVICES"
+        "SMALLDEVICES",
+        "toastify"
     ]
 }

@@ -2,27 +2,41 @@
 import React, { useEffect, useState } from 'react';
 import { Header, SearchBar, WeatherResult } from '../../components';
 import { getLocation } from '../../utils/getLocation';
+import { ToastContainer, toast } from 'react-toastify';
 import { getWeatherForecast } from '../../utils/getWeatherReport';
 import styled from 'styled-components';
 
 function Home() {
   const [location, setLocation] = useState<any>('0,0');
-  const [weatherReport, setWeatherReport] = useState({})
+  const [weatherReport, setWeatherReport] = useState({});
   const [isLoading, setIsLoading] = useState(false)
   const initialLocation: string[] = [
     'Lagos', 'Abuja', 'London', 'Los Angeles', 'Paris'
   ]
   useEffect(() => {
     getLocation(setLocation)
-    console.log(location)
-    console.log(weatherReport)
   }, [])
   const handleEnter = async () => {
     setIsLoading(true)
-    const response = await getWeatherForecast({location});
-    console.log({debug: true, response})
-    setWeatherReport(response)
+    try {
+      const response = await getWeatherForecast({location});
+      setWeatherReport(response)
+      setIsLoading(false)
+      return
+    }catch(error){
+      console.log(error);
+      toast.error(`${error}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+    }
     setIsLoading(false)
+    return
   }
   return (
     <React.Fragment>
@@ -37,9 +51,20 @@ function Home() {
               isLoading={isLoading}
             />
             <div style={{marginTop: 10}}>
-              {weatherReport !== {} && <WeatherResult weatherReport={weatherReport}/>}
+              <WeatherResult weatherReport={weatherReport}/>
             </div>
         </MainContainer>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
     </React.Fragment>
   );
 }

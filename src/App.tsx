@@ -5,7 +5,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 import { HomePage } from "./pages";
+
 
 export default function App() {
   return (
